@@ -1,16 +1,14 @@
 package it.bitsrl.megan.entities;
 
-
 import javax.persistence.*;
 import java.time.LocalDate;
-
 
 @Entity
 @Table(name="enrollment")
 public class Enrollment {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne

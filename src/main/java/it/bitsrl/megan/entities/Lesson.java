@@ -1,6 +1,5 @@
 package it.bitsrl.megan.entities;
 
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 public class Lesson {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     private String subject;

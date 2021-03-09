@@ -1,6 +1,5 @@
 package it.bitsrl.megan.entities;
 
-
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -10,8 +9,9 @@ import java.util.Collection;
 public class Course {
 
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
+
     private String name;
     private int duration;
     private double cost;
@@ -22,4 +22,11 @@ public class Course {
     @OneToMany(mappedBy="course")
     private Collection<CourseEdition> editions;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

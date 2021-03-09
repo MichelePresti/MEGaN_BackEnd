@@ -11,7 +11,7 @@ import javax.persistence.*;
 public abstract class Classroom {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
 
     private String name;

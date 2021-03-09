@@ -1,6 +1,5 @@
 package it.bitsrl.megan.entities;
 
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -10,8 +9,9 @@ import java.util.List;
 @Table(name="course_edition")
 public class CourseEdition {
 
+
    @Id
-   @GeneratedValue
+   @GeneratedValue(strategy=GenerationType.IDENTITY)
    private long id;
 
    private LocalDateTime startDate;
@@ -31,7 +31,7 @@ public class CourseEdition {
    @ManyToOne
    private Employee editionManager;
 
-   @ManyToOne
+   @ManyToOne()
    private Course course;
 
    private String courseEditionName;
@@ -41,4 +41,11 @@ public class CourseEdition {
       this.id = id;
    }
 
+   public long getId() {
+      return id;
+   }
+
+   public void setId(long id) {
+      this.id = id;
+   }
 }

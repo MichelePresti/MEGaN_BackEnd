@@ -1,10 +1,8 @@
 package it.bitsrl.megan.entities;
 
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
-
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -14,7 +12,7 @@ import java.util.Collection;
 public abstract class Person {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
 
     private String firstName;

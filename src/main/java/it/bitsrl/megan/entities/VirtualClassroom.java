@@ -2,11 +2,9 @@ package it.bitsrl.megan.entities;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
 @DiscriminatorValue("VIRTUAL")
-@Table(name="virtual_classroom")
 public class VirtualClassroom extends Classroom{
 
     private String platform;
@@ -22,5 +20,4 @@ public class VirtualClassroom extends Classroom{
     public boolean hasProjectors() {
         return true;
     }
-
 }

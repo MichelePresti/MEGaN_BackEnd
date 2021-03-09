@@ -1,6 +1,5 @@
 package it.bitsrl.megan.entities;
 
-
 import javax.persistence.*;
 import java.time.LocalTime;
 
@@ -9,7 +8,7 @@ import java.time.LocalTime;
 public class Session {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @Enumerated(EnumType.ORDINAL)

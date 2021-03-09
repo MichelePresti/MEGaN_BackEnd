@@ -1,6 +1,5 @@
 package it.bitsrl.megan.entities;
 
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 public class Module {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     private String name;

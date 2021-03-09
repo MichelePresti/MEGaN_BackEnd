@@ -8,8 +8,9 @@ import java.util.Collection;
 public class Ability {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
+
     private String name;
 
     @ManyToOne

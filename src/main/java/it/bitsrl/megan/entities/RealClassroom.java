@@ -1,11 +1,9 @@
 package it.bitsrl.megan.entities;
 
-
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("REAL")
-@Table(name="real_classroom")
 public class RealClassroom extends Classroom{
 
 
@@ -14,12 +12,12 @@ public class RealClassroom extends Classroom{
 
     @Override
     public boolean hasComputer() {
-        return tech == Equipment.PC || tech == Equipment.FULL;
+        return true;
     }
 
     @Override
     public boolean hasProjectors() {
-        return tech == Equipment.PROJECTOR || tech == Equipment.FULL;
+        return true;
     }
-
+    
 }

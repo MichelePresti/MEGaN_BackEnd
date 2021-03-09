@@ -1,0 +1,16 @@
+package it.bitsrl.megan.services.abstractions;
+
+import it.bitsrl.megan.entities.Course;
+import it.bitsrl.megan.entities.CourseEdition;
+
+import java.util.Collection;
+
+public interface AbstractCourseService {
+
+    Collection<CourseEdition> getCourses();
+    Collection<CourseEdition> getCourseByTitleLike(String title);
+    CourseEdition getCourseById(long id);
+    CourseEdition addCourse(CourseEdition course);
+    Boolean deleteCourseById(long id);
+    CourseEdition updateCourse(CourseEdition course);
+}

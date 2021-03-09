@@ -7,9 +7,8 @@ import java.util.List;
 @Table(name="skill")
 public class Skill {
 
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne

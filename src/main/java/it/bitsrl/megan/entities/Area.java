@@ -1,6 +1,5 @@
 package it.bitsrl.megan.entities;
 
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,8 +8,9 @@ import java.util.Set;
 public class Area {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
+
     private String name;
     private String description;
 

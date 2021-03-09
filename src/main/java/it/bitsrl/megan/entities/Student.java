@@ -9,7 +9,6 @@ import java.util.Collection;
 
 @Entity
 @DiscriminatorValue("STUDENT")
-@Table(name="student")
 public class Student extends Person {
 
     @OneToMany(mappedBy="student")
