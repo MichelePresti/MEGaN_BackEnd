@@ -27,6 +27,11 @@ public class CourseEditionService implements AbstractCourseEditionService {
     }
 
     @Override
+    public Collection<CourseEdition> get4RecentCourses() {
+        return this.courseRepo.findTop4ByOrderByStartDateDesc();
+    }
+
+    @Override
     public CourseEdition getCourseById(long id) {
         return this.courseRepo.findByCourseId(id);
     }

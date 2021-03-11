@@ -23,13 +23,18 @@ public class CourseEditionController {
 
     @GetMapping("/")
     public ResponseEntity<Collection<CourseEditionDTO>> getAllCourses() {
-        /*Collection<CourseEditionDTO> result1 = new ArrayList<>();
-        result1.add(new CourseEditionDTO("Java","Program"));
-        return new ResponseEntity<>(result1,HttpStatus.OK);*/
         Collection<CourseEditionDTO> result = this.courseService.getCourses().stream()
                .map(CourseEditionDTO::new)
                 .collect(Collectors.toList());
          return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping("/recent")
+    public ResponseEntity<Collection<CourseEditionDTO>> get4RecentCourses(){
+        Collection<CourseEditionDTO> result = this.courseService.get4RecentCourses().stream()
+                .map(CourseEditionDTO::new)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/{id]")

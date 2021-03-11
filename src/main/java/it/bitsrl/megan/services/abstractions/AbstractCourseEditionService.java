@@ -10,6 +10,7 @@ public interface AbstractCourseEditionService {
 
     Collection<CourseEdition> getCourses();
     Collection<CourseEdition> getCourseByTitleLike(String title);
+    Collection<CourseEdition> get4RecentCourses();
     CourseEdition getCourseById(long id);
     CourseEdition addCourse(CourseEdition course);
     Boolean deleteCourseById(long id);
