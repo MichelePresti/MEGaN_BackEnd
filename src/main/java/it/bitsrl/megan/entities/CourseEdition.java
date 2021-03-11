@@ -38,6 +38,8 @@ public class CourseEdition {
 
    private String courseEditionName;
 
+   public CourseEdition(){}
+
    public CourseEdition(long id, String name){
       this.courseEditionName = name;
       this.id = id;

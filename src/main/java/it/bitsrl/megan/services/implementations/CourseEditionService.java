@@ -17,6 +17,7 @@ public class CourseEditionService implements AbstractCourseEditionService {
 
     @Override
     public Collection<CourseEdition> getCourses() {
+
         return (Collection<CourseEdition>) this.courseRepo.findAll();
     }
 

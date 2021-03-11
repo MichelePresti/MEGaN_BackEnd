@@ -18,9 +18,11 @@ public abstract class Classroom {
     private String title;
     private int size;
 
+    public Classroom(){}
     public Classroom(long id){
         this.id = id;
     }
+
     public abstract boolean hasComputer();
 
     public abstract boolean hasProjectors();

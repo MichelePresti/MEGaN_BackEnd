@@ -21,6 +21,7 @@ public class Address {
     private Person person;
 
 
+    public Address(){}
 
     public Address(String streetAddress, String city, String province, Region region) {
         this.streetAddress = streetAddress;

@@ -23,7 +23,9 @@ public class CourseEditionController {
 
     @GetMapping("/")
     public ResponseEntity<Collection<CourseEditionDTO>> getAllCourses() {
-
+        /*Collection<CourseEditionDTO> result1 = new ArrayList<>();
+        result1.add(new CourseEditionDTO("Java","Program"));
+        return new ResponseEntity<>(result1,HttpStatus.OK);*/
         Collection<CourseEditionDTO> result = this.courseService.getCourses().stream()
                .map(CourseEditionDTO::new)
                 .collect(Collectors.toList());

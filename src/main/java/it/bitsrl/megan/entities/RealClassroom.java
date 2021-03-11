@@ -7,8 +7,10 @@ import javax.persistence.*;
 public class RealClassroom extends Classroom{
 
 
+    public RealClassroom(){}
     @Enumerated(EnumType.STRING)
     private Equipment tech;
+
 
     public RealClassroom(long id){
         super(id);
