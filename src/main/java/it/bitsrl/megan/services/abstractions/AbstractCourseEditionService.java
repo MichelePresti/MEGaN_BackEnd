@@ -5,7 +5,8 @@ import it.bitsrl.megan.entities.CourseEdition;
 
 import java.util.Collection;
 
-public interface AbstractCourseService {
+public interface AbstractCourseEditionService {
+
 
     Collection<CourseEdition> getCourses();
     Collection<CourseEdition> getCourseByTitleLike(String title);
@@ -13,4 +14,6 @@ public interface AbstractCourseService {
     CourseEdition addCourse(CourseEdition course);
     Boolean deleteCourseById(long id);
     CourseEdition updateCourse(CourseEdition course);
+
+
 }

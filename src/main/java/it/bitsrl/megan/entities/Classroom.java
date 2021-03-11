@@ -18,8 +18,42 @@ public abstract class Classroom {
     private String title;
     private int size;
 
+    public Classroom(long id){
+        this.id = id;
+    }
     public abstract boolean hasComputer();
 
     public abstract boolean hasProjectors();
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 }

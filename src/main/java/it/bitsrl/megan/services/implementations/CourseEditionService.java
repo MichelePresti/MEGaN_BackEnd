@@ -1,9 +1,8 @@
 package it.bitsrl.megan.services.implementations;
 
 import it.bitsrl.megan.entities.CourseEdition;
-import it.bitsrl.megan.entities.CourseEdition;
-import it.bitsrl.megan.repositories.CourseRepository;
-import it.bitsrl.megan.services.abstractions.AbstractCourseService;
+import it.bitsrl.megan.repositories.CourseEditionRepository;
+import it.bitsrl.megan.services.abstractions.AbstractCourseEditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +10,10 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Service
-public class CourseService implements AbstractCourseService {
+public class CourseEditionService implements AbstractCourseEditionService {
 
     @Autowired
-    private CourseRepository courseRepo;
+    private CourseEditionRepository courseRepo;
 
     @Override
     public Collection<CourseEdition> getCourses() {
@@ -52,4 +51,6 @@ public class CourseService implements AbstractCourseService {
         courseUpdate.ifPresent(value -> course.setId(value.getId()));
         return this.courseRepo.save(course);
     }
+
+
 }

@@ -18,6 +18,7 @@ public class Course {
     private String program;
     private boolean certification;
     private String category;
+    private String title;
 
     @OneToMany(mappedBy="course")
     private Collection<CourseEdition> editions;
@@ -28,5 +29,61 @@ public class Course {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public String getProgram() {
+        return program;
+    }
+
+    public void setProgram(String program) {
+        this.program = program;
+    }
+
+    public boolean isCertification() {
+        return certification;
+    }
+
+    public void setCertification(boolean certification) {
+        this.certification = certification;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Collection<CourseEdition> getEditions() {
+        return editions;
+    }
+
+    public void setEditions(Collection<CourseEdition> editions) {
+        this.editions = editions;
     }
 }

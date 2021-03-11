@@ -2,30 +2,32 @@ package it.bitsrl.megan.controllers;
 
 import it.bitsrl.megan.dtos.CourseEditionDTO;
 import it.bitsrl.megan.entities.CourseEdition;
-import it.bitsrl.megan.services.abstractions.AbstractCourseService;
+import it.bitsrl.megan.services.abstractions.AbstractCourseEditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/course")
-public class CourseController {
+@RequestMapping("/api/courses")
+public class CourseEditionController {
 
     @Autowired
-    private AbstractCourseService courseService;
+    private AbstractCourseEditionService courseService;
 
     @GetMapping("/")
     public ResponseEntity<Collection<CourseEditionDTO>> getAllCourses() {
+
         Collection<CourseEditionDTO> result = this.courseService.getCourses().stream()
-                .map(CourseEditionDTO::new)
+               .map(CourseEditionDTO::new)
                 .collect(Collectors.toList());
-        return new ResponseEntity<>(result, HttpStatus.OK);
+         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/{id]")
@@ -47,13 +49,14 @@ public class CourseController {
     }
 
     @PostMapping(path="/add-course")
-    public ResponseEntity<CourseEditionDTO> addCourse(@RequestBody CourseEdition course){
-        CourseEdition status = this.courseService.addCourse(course);
+    public ResponseEntity<CourseEditionDTO> addCourse(@RequestBody CourseEditionDTO courseEditionDto){
+        CourseEdition courseEdition = courseEditionDto.toCourseEdition();
+        CourseEdition status = this.courseService.addCourse(courseEdition);
         if (status == null){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<>(new CourseEditionDTO(course), HttpStatus.OK);
+        return new ResponseEntity<>(new CourseEditionDTO(courseEdition), HttpStatus.OK);
     }
 
     @DeleteMapping(path="/delete-course/{id}")
@@ -64,7 +67,6 @@ public class CourseController {
         }
         return new ResponseEntity<>("Impossibile eliminare il corso, perchè non presente nel database", HttpStatus.BAD_REQUEST);
     }
-
 
 
 }

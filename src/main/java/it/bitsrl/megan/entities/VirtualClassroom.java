@@ -11,6 +11,9 @@ public class VirtualClassroom extends Classroom{
     private String link;
     private String password;
 
+    public VirtualClassroom(long id){
+        super(id);
+    }
     @Override
     public boolean hasComputer() {
         return true;

@@ -10,6 +10,9 @@ public class RealClassroom extends Classroom{
     @Enumerated(EnumType.STRING)
     private Equipment tech;
 
+    public RealClassroom(long id){
+        super(id);
+    }
     @Override
     public boolean hasComputer() {
         return true;

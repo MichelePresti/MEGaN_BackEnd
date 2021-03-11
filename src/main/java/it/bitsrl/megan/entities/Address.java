@@ -20,6 +20,8 @@ public class Address {
     @OneToOne(mappedBy="address")
     private Person person;
 
+
+
     public Address(String streetAddress, String city, String province, Region region) {
         this.streetAddress = streetAddress;
         this.city = city;
