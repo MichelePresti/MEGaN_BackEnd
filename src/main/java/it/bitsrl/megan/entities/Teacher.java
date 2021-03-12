@@ -15,4 +15,8 @@ public class Teacher extends Person{
     private Collection<Module> modules;
 
     private double costPerHour;
+
+    public Teacher(String name, String surname, String email,String password){
+        super(name, surname, email, password);
+    }
 }

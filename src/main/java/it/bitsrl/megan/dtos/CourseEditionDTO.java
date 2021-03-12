@@ -27,6 +27,7 @@ public class CourseEditionDTO {
     private long courseId;
     private long employeeId;
     private String classroomType;
+    private String courseName;
 
 
     public CourseEditionDTO(CourseEdition courseEdition){
@@ -48,6 +49,7 @@ public class CourseEditionDTO {
         this.employeeId = courseEdition.getEditionManager().getId();
         this.courseId = courseEdition.getCourse().getId();
         this.classroomType = courseEdition.getClassroom() instanceof RealClassroom ? "real" : "virtual";
+        this.courseName = courseEdition.getCourse().getName();
 
     }
 

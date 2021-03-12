@@ -30,5 +30,9 @@ public class Address {
         this.region = region;
     }
 
+    public String addressToString(){
+        return this.streetAddress + " " + this.city + " " + this.province + " " + this.region;
+    }
+
 
 }

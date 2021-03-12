@@ -15,7 +15,6 @@ public abstract class Classroom {
     private long id;
 
     private String name;
-    private String title;
     private int size;
 
     public Classroom(){}
@@ -43,13 +42,7 @@ public abstract class Classroom {
         this.name = name;
     }
 
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public int getSize() {
         return size;

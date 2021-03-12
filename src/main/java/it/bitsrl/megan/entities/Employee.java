@@ -15,4 +15,7 @@ public class Employee extends Person{
     @OneToMany(mappedBy="editionManager")
     private Collection<CourseEdition> editionsToManage;
 
+    public Employee(String name, String surname, String email,String password){
+        super(name, surname, email, password);
+    }
 }

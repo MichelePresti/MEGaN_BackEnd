@@ -21,10 +21,14 @@ public class Student extends Person {
     private Collection<Application> applications;
 
 
+    public Student(){}
     public Student(String name,String surname,Gender gender){
-
         super(name,surname,gender);
+    }
 
+
+    public Student(String name, String surname, String email,String password){
+        super(name, surname, email, password);
     }
 
 

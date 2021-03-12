@@ -28,6 +28,16 @@ public abstract class Person {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Address address;
     private String email;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String password;
     private String phone;
 
     @OneToMany(mappedBy="person")
@@ -47,6 +57,18 @@ public abstract class Person {
 
     public Person(){}
 
+    public Person(String firstName, String lastName, String email, String password){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.address = null;
+        this.birthPlace = "";
+        this.birthDate = null;
+        this.phone = "";
+        this.gender = Gender.MALE;
+
+    }
     public Person(String firstName,String lastName,Gender gender){
 
         this.firstName = firstName;
