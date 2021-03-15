@@ -33,6 +33,8 @@ public class Enrollment {
 
     }
 
+    public Enrollment(){}
+
     public Student getStudent() {
         return student;
     }

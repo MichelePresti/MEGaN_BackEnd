@@ -2,10 +2,6 @@ package it.bitsrl.megan.dtos;
 
 import it.bitsrl.megan.entities.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
-import java.time.LocalDate;
 
 public class PersonDTO {
 
@@ -138,5 +134,9 @@ public class PersonDTO {
 
     public void setPersonType(String personType) {
         this.personType = personType;
+    }
+
+    public boolean checkPassword(){
+        return this.password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
     }
 }

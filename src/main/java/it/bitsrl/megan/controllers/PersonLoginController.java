@@ -1,10 +1,13 @@
 package it.bitsrl.megan.controllers;
 
 
+import it.bitsrl.megan.access.AdminAccess;
+import it.bitsrl.megan.dtos.PasswordDTO;
 import it.bitsrl.megan.dtos.PersonDTO;
 import it.bitsrl.megan.entities.Person;
 import it.bitsrl.megan.services.abstractions.AbstractPersonLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +29,8 @@ public class PersonLoginController {
     public ResponseEntity<Person> addPerson(@RequestBody PersonDTO personDto){
         boolean isAlreadyRegistered = this.loginService.findPersonByEmail(personDto.getEmail()) != null;
         if(isAlreadyRegistered){
+            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+        } else if(!personDto.checkPassword()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(this.loginService.addPerson(personDto.toPersonLogin(personDto)), HttpStatus.CREATED);
@@ -54,6 +59,15 @@ public class PersonLoginController {
 
 
         return new ResponseEntity<>(new PersonDTO(user), HttpStatus.OK);
+    }
+
+    @PostMapping(path="/admin")
+    public ResponseEntity<Boolean> checkAdminPassword(@RequestBody PasswordDTO password){
+        AdminAccess accessKey = new AdminAccess();
+        if(password.getAccessKey().equals(accessKey.getPassword())) {
+            return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 }

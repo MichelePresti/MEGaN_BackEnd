@@ -11,6 +11,7 @@ public class VirtualClassroom extends Classroom{
     private String link;
     private String password;
 
+    public VirtualClassroom(){}
     public VirtualClassroom(long id){
         super(id);
     }

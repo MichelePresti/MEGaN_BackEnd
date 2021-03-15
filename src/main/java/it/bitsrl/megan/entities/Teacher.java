@@ -16,6 +16,7 @@ public class Teacher extends Person{
 
     private double costPerHour;
 
+    public Teacher(){}
     public Teacher(String name, String surname, String email,String password){
         super(name, surname, email, password);
     }
