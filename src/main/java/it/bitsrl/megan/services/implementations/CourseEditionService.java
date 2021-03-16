@@ -17,13 +17,12 @@ public class CourseEditionService implements AbstractCourseEditionService {
 
     @Override
     public Collection<CourseEdition> getCourses() {
-
         return (Collection<CourseEdition>) this.courseRepo.findAll();
     }
 
     @Override
     public Collection<CourseEdition> getCourseByTitleLike(String title) {
-        return this.courseRepo.findByCourseTitleLike(title); // title = "java%"
+        return this.courseRepo.findByCourseNameLike(title); // title = "java%"
     }
 
     @Override
@@ -32,8 +31,11 @@ public class CourseEditionService implements AbstractCourseEditionService {
     }
 
     @Override
-    public CourseEdition getCourseById(long id) {
-        return this.courseRepo.findByCourseId(id);
+    public Optional<CourseEdition> getCourseById(long id) {
+
+        Optional<CourseEdition> result = this.courseRepo.findById(id);
+        System.out.println(result);
+        return result;
     }
 
     @Override

@@ -38,6 +38,8 @@ public class CourseEdition {
 
    private String courseEditionName;
 
+   private int duration;
+
    public CourseEdition(){}
 
    public CourseEdition(long id, String name){
@@ -45,7 +47,7 @@ public class CourseEdition {
       this.id = id;
    }
 
-   public CourseEdition(long id, LocalDateTime startDate, Classroom classroom, Collection<Application> applicatedStudents, Collection<Enrollment> enrolledStudents, Collection<Module> modules, Employee editionManager, Course course, String city, String courseEditionName) {
+   public CourseEdition(long id, LocalDateTime startDate, Classroom classroom, Collection<Application> applicatedStudents, Collection<Enrollment> enrolledStudents, Collection<Module> modules, Employee editionManager, Course course, String city, String courseEditionName, int duration) {
       this.id = id;
       this.startDate = startDate;
       this.classroom = classroom;
@@ -56,6 +58,7 @@ public class CourseEdition {
       this.course = course;
       this.city = city;
       this.courseEditionName = courseEditionName;
+      this.duration = duration;
    }
 
    public long getId() {
@@ -136,5 +139,13 @@ public class CourseEdition {
 
    public void setCity(String city) {
       this.city = city;
+   }
+
+   public int getDuration() {
+      return duration;
+   }
+
+   public void setDuration(int duration) {
+      this.duration = duration;
    }
 }

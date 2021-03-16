@@ -1,72 +1,38 @@
 package it.bitsrl.megan.dtos;
 
-import it.bitsrl.megan.entities.Classroom;
 import it.bitsrl.megan.entities.CourseEdition;
-import it.bitsrl.megan.entities.RealClassroom;
-import it.bitsrl.megan.entities.VirtualClassroom;
-import java.time.LocalDateTime;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class CourseEditionDTO {
 
     private long id;
-    private LocalDateTime startDate;
-    private String courseEditionName;
-    private String classroomName;
-    private int size;
-    private int numModules;
-    private String editionManager;
-    private int duration;
-    private double cost;
-    private String program;
-    private boolean certification;
-    private String category;
+    private String startDate;
+    private ClassroomDTO classroom;
+    private Collection<ApplicationDTO> applicatedStudents;
+    private Collection<EnrollmentDTO> enrolledStudents;
+    private Collection<ModuleDTO> modules;
+    private PersonDTO editionManager;
+    private CourseDTO course;
     private String city;
-    private long classroomId;
-    private long courseId;
-    private long employeeId;
-    private String classroomType;
-    private String courseName;
+    private String courseEditionName;
+    private int duration;
 
+    public CourseEditionDTO(){}
 
-    public CourseEditionDTO(CourseEdition courseEdition){
-
-        this.id = courseEdition.getId();
-        this.startDate = courseEdition.getStartDate();
-        this.courseEditionName = courseEdition.getCourseEditionName();
-        this.classroomName = courseEdition.getClassroom().getName();
-        this.size = courseEdition.getClassroom().getSize();
-        this.numModules = courseEdition.getModules().size();
-        this.editionManager = courseEdition.getEditionManager().getFirstName() + courseEdition.getEditionManager().getLastName();
-        this.duration = courseEdition.getCourse().getDuration();
-        this.cost = courseEdition.getCourse().getCost();
-        this.program = courseEdition.getCourse().getProgram();
-        this.certification = courseEdition.getCourse().isCertification();
-        this.category = courseEdition.getCourse().getCategory();
-        this.city = courseEdition.getCity();
-        this.classroomId = courseEdition.getClassroom().getId();
-        this.employeeId = courseEdition.getEditionManager().getId();
-        this.courseId = courseEdition.getCourse().getId();
-        this.classroomType = courseEdition.getClassroom() instanceof RealClassroom ? "real" : "virtual";
-        this.courseName = courseEdition.getCourse().getName();
-
-    }
-
-    public CourseEditionDTO(String name, String category){
-        this.courseEditionName = name;
-        this.category = category;
-    }
-    public CourseEdition toCourseEdition(){
-        Classroom classroom;
-        if(this.classroomType.equals("real")){
-             classroom = new RealClassroom(this.classroomId);
-        }else{
-             classroom = new VirtualClassroom(this.classroomId);
-        }
-
-
-       return null;
+    public CourseEditionDTO(CourseEdition ce){
+        this.id = ce.getId();
+        this.startDate = ce.getStartDate().toString();
+        this.classroom = new ClassroomDTO(ce.getClassroom());
+        this.applicatedStudents = ce.getApplicatedStudents().stream().map(ApplicationDTO::new).collect(Collectors.toList());
+        this.enrolledStudents = ce.getEnrolledStudents().stream().map(EnrollmentDTO::new).collect(Collectors.toList());
+        this.modules = ce.getModules().stream().map(ModuleDTO::new).collect(Collectors.toList());
+        this.editionManager = new PersonDTO(ce.getEditionManager());
+        this.course = new CourseDTO(ce.getCourse());
+        this.city = ce.getCity();
+        this.courseEditionName = ce.getCourseEditionName();
+        this.duration = ce.getDuration();
     }
 
     public long getId() {
@@ -77,12 +43,68 @@ public class CourseEditionDTO {
         this.id = id;
     }
 
-    public LocalDateTime getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
+    }
+
+    public ClassroomDTO getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(ClassroomDTO classroom) {
+        this.classroom = classroom;
+    }
+
+    public Collection<ApplicationDTO> getApplicatedStudents() {
+        return applicatedStudents;
+    }
+
+    public void setApplicatedStudents(Collection<ApplicationDTO> applicatedStudents) {
+        this.applicatedStudents = applicatedStudents;
+    }
+
+    public Collection<EnrollmentDTO> getEnrolledStudents() {
+        return enrolledStudents;
+    }
+
+    public void setEnrolledStudents(Collection<EnrollmentDTO> enrolledStudents) {
+        this.enrolledStudents = enrolledStudents;
+    }
+
+    public Collection<ModuleDTO> getModules() {
+        return modules;
+    }
+
+    public void setModules(Collection<ModuleDTO> modules) {
+        this.modules = modules;
+    }
+
+    public PersonDTO getEditionManager() {
+        return editionManager;
+    }
+
+    public void setEditionManager(PersonDTO editionManager) {
+        this.editionManager = editionManager;
+    }
+
+    public CourseDTO getCourse() {
+        return course;
+    }
+
+    public void setCourse(CourseDTO course) {
+        this.course = course;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getCourseEditionName() {
@@ -93,83 +115,11 @@ public class CourseEditionDTO {
         this.courseEditionName = courseEditionName;
     }
 
-    public String getClassroomName() {
-        return classroomName;
-    }
-
-    public void setClassroomName(String classroomName) {
-        this.classroomName = classroomName;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int getNumModules() {
-        return numModules;
-    }
-
-    public void setNumModules(int numModules) {
-        this.numModules = numModules;
-    }
-
-    public String getEditionManager() {
-        return editionManager;
-    }
-
-    public void setEditionManager(String editionManager) {
-        this.editionManager = editionManager;
-    }
-
     public int getDuration() {
         return duration;
     }
 
     public void setDuration(int duration) {
         this.duration = duration;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    public String getProgram() {
-        return program;
-    }
-
-    public void setProgram(String program) {
-        this.program = program;
-    }
-
-    public boolean isCertification() {
-        return certification;
-    }
-
-    public void setCertification(boolean certification) {
-        this.certification = certification;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 }

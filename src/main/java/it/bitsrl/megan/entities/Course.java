@@ -13,12 +13,10 @@ public class Course {
     private int id;
 
     private String name;
-    private int duration;
     private double cost;
     private String program;
     private boolean certification;
     private String category;
-    private String title;
 
     @OneToMany(mappedBy="course")
     private Collection<CourseEdition> editions;
@@ -37,14 +35,6 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
     }
 
     public double getCost() {

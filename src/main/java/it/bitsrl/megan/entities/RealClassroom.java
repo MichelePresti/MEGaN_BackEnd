@@ -7,14 +7,15 @@ import javax.persistence.*;
 public class RealClassroom extends Classroom{
 
 
-    public RealClassroom(){}
     @Enumerated(EnumType.STRING)
     private Equipment tech;
 
 
+    public RealClassroom(){}
     public RealClassroom(long id){
         super(id);
     }
+
     @Override
     public boolean hasComputer() {
         return true;
@@ -23,6 +24,10 @@ public class RealClassroom extends Classroom{
     @Override
     public boolean hasProjectors() {
         return true;
+    }
+
+    public Equipment getTech(){
+        return this.tech;
     }
     
 }

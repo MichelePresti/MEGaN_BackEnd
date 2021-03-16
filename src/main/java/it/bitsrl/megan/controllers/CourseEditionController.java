@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -37,16 +38,17 @@ public class CourseEditionController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/{id]")
+    @GetMapping("/{id}")
     public ResponseEntity<CourseEditionDTO> getCourseById(@PathVariable int id) {
-        CourseEdition result = this.courseService.getCourseById(id);
-        if(result == null){
+        System.out.println(id);
+        Optional<CourseEdition> result = this.courseService.getCourseById(id);
+        if(result.isEmpty()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(new CourseEditionDTO(result), HttpStatus.OK);
+        return new ResponseEntity<>(new CourseEditionDTO(result.get()), HttpStatus.OK);
     }
 
-    @GetMapping("/{titleLike}")
+    @GetMapping("/title/{titleLike}")
     public ResponseEntity<Collection<CourseEditionDTO>> getCourseByTitleLike(@PathVariable String title){
         Collection<CourseEditionDTO> result = this.courseService.getCourseByTitleLike(title).stream()
                 .map(CourseEditionDTO::new)
@@ -55,9 +57,10 @@ public class CourseEditionController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PostMapping(path="/add-course")
+    @PostMapping(path="/add-course-edition")
     public ResponseEntity<CourseEditionDTO> addCourse(@RequestBody CourseEditionDTO courseEditionDto){
-        CourseEdition courseEdition = courseEditionDto.toCourseEdition();
+        
+        CourseEdition courseEdition = new CourseEdition();
         CourseEdition status = this.courseService.addCourse(courseEdition);
         if (status == null){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -65,6 +68,7 @@ public class CourseEditionController {
 
         return new ResponseEntity<>(new CourseEditionDTO(courseEdition), HttpStatus.OK);
     }
+
 
     @DeleteMapping(path="/delete-course/{id}")
     public ResponseEntity<String> deleteCourseById(@PathVariable int id){

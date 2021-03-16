@@ -5,9 +5,10 @@ import it.bitsrl.megan.entities.*;
 
 public class PersonDTO {
 
+    private long id;
     private String firstName;
     private String lastName;
-    private Gender gender;
+    private String gender;
 
     private String personType;
     private String birthDate;
@@ -19,22 +20,24 @@ public class PersonDTO {
     private String password;
     private String phone;
 
-    public PersonDTO(){ }
+    public PersonDTO() {
+    }
 
     public PersonDTO(Person person) {
-       this.firstName = person.getFirstName();
-       this.lastName = person.getLastName();
-       this.gender = person.getGender();
-       this.birthDate = null;
-       this.birthPlace = person.getBirthPlace();
-       this.fiscalCode = person.getFiscalCode();
-       this.address = null;
-       this.email = person.getEmail();
-       this.password = person.getPassword();
-       this.phone = person.getPhone();
-       if(person instanceof Student) this.personType = "STUDENT";
-       else if(person instanceof Employee) this.personType = "EMPLOYEE";
-       else this.personType = "TEACHER";
+        this.id = person.getId();
+        this.firstName = person.getFirstName();
+        this.lastName = person.getLastName();
+        this.gender = person.getGender() == null ? "": person.getGender().toString();
+        this.birthDate = null;
+        this.birthPlace = person.getBirthPlace();
+        this.fiscalCode = person.getFiscalCode();
+        this.address = null;
+        this.email = person.getEmail();
+        this.password = person.getPassword();
+        this.phone = person.getPhone();
+        if (person instanceof Student) this.personType = "STUDENT";
+        else if (person instanceof Employee) this.personType = "EMPLOYEE";
+        else this.personType = "TEACHER";
     }
 
     public Person toPersonLogin(PersonDTO personDto) {
@@ -64,11 +67,11 @@ public class PersonDTO {
         this.lastName = lastName;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -136,7 +139,15 @@ public class PersonDTO {
         this.personType = personType;
     }
 
-    public boolean checkPassword(){
+    public boolean checkPassword() {
         return this.password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

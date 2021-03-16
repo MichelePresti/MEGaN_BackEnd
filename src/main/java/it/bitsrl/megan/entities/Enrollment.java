@@ -54,4 +54,32 @@ public class Enrollment {
     public Double getGrade() {
         return grade;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public void setCourseEdition(CourseEdition courseEdition) {
+        this.courseEdition = courseEdition;
+    }
+
+    public void setEnrollDate(LocalDate enrollDate) {
+        this.enrollDate = enrollDate;
+    }
+
+    public void setPayed(Boolean payed) {
+        isPayed = payed;
+    }
+
+    public void setGrade(Double grade) {
+        this.grade = grade;
+    }
 }

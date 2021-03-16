@@ -26,4 +26,51 @@ public class Application {
 
     private String comments;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public CourseEdition getEdition() {
+        return edition;
+    }
+
+    public void setEdition(CourseEdition edition) {
+        this.edition = edition;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public LocalDateTime getApplicationDate() {
+        return applicationDate;
+    }
+
+    public void setApplicationDate(LocalDateTime applicationDate) {
+        this.applicationDate = applicationDate;
+    }
+
+    public ProcessingState getApplicationState() {
+        return applicationState;
+    }
+
+    public void setApplicationState(ProcessingState applicationState) {
+        this.applicationState = applicationState;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
 }

@@ -8,7 +8,6 @@ import java.util.Collection;
 
 public interface CourseEditionRepository extends JpaRepository<CourseEdition, Long> {
 
-    Collection<CourseEdition> findByCourseTitleLike(String title);
-    CourseEdition findByCourseId(long id);
+    Collection<CourseEdition> findByCourseNameLike(String title);
     Collection<CourseEdition> findTop4ByOrderByStartDateDesc();
 }
