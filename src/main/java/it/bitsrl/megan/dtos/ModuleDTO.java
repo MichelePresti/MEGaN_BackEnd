@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class ModuleDTO {
 
-    private int id;
+    private Integer id;
     private String name;
     private String subject;
     private PersonDTO teacher;
@@ -27,7 +27,7 @@ public class ModuleDTO {
         this.sessions = module.getSessions().stream().map(SessionDTO::new).collect(Collectors.toList());
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

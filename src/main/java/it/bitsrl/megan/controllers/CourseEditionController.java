@@ -1,26 +1,40 @@
 package it.bitsrl.megan.controllers;
 
+import it.bitsrl.megan.dtos.ClassroomDTO;
 import it.bitsrl.megan.dtos.CourseEditionDTO;
-import it.bitsrl.megan.entities.CourseEdition;
+import it.bitsrl.megan.dtos.ModuleDTO;
+import it.bitsrl.megan.entities.*;
+import it.bitsrl.megan.entities.Module;
+import it.bitsrl.megan.services.abstractions.AbstractClassroomService;
 import it.bitsrl.megan.services.abstractions.AbstractCourseEditionService;
+import it.bitsrl.megan.services.abstractions.AbstractCourseService;
+import it.bitsrl.megan.services.abstractions.AbstractPersonLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
-@CrossOrigin
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
-@RequestMapping("/api/courses")
+@RequestMapping("/api/course-editions")
 public class CourseEditionController {
 
     @Autowired
     private AbstractCourseEditionService courseService;
+
+    @Autowired
+    private AbstractClassroomService classroomService;
+
+    @Autowired
+    private AbstractPersonLoginService personLoginService;
+
+    @Autowired
+    private AbstractCourseService courseBaseService;
 
     @GetMapping("/")
     public ResponseEntity<Collection<CourseEditionDTO>> getAllCourses() {
@@ -59,14 +73,46 @@ public class CourseEditionController {
 
     @PostMapping(path="/add-course-edition")
     public ResponseEntity<CourseEditionDTO> addCourse(@RequestBody CourseEditionDTO courseEditionDto){
-        
-        CourseEdition courseEdition = new CourseEdition();
-        CourseEdition status = this.courseService.addCourse(courseEdition);
-        if (status == null){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        Classroom classroom;
+        System.out.println(courseEditionDto);
+        if(courseEditionDto.getClassroom().getClassroomType() == "VIRTUAL"){
+            ClassroomDTO c = courseEditionDto.getClassroom();
+            classroom = new VirtualClassroom(null, c.getName(), c.getSize(), c.getPlatform(), c.getLink(), c.getPassword());
+        }
+        classroom = this.classroomService.getClassroomById(courseEditionDto.getClassroom().getId()).get();
+        Collection<Application> applications = new ArrayList<>();
+        Collection<Enrollment> enrollments = new ArrayList<>();
+
+        Collection<Module> modules = new LinkedList<>();
+        for(ModuleDTO module: courseEditionDto.getModules()){
+            Person teacher = this.personLoginService.findPersonByEmail(module.getTeacher().getEmail());
+            List<Lesson> lessons = new LinkedList<>();
+            Collection<Session> sessions = new LinkedList<>();
+            //if(!(teacher instanceof Teacher)) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            modules.add(new Module(null, module.getName(), module.getSubject(), teacher, module.getDurationHours(),lessons, null, sessions ));
         }
 
-        return new ResponseEntity<>(new CourseEditionDTO(courseEdition), HttpStatus.OK);
+        Person editionManager = this.personLoginService.findPersonByEmail(courseEditionDto.getEditionManager().getEmail());
+        //if(!(editionManager instanceof Employee)) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        Course course = this.courseBaseService.getCourseById(courseEditionDto.getCourse().getId()).get();
+
+        CourseEdition courseEdition = new CourseEdition(
+                null,
+                LocalDateTime.now(),
+                classroom,
+                applications,
+                enrollments,
+                modules,
+                (Employee)editionManager,
+                course,
+                courseEditionDto.getCity(),
+                courseEditionDto.getCourseEditionName(),
+                courseEditionDto.getDuration()
+
+        );
+        CourseEdition result = this.courseService.addCourse(courseEdition);
+        return new ResponseEntity<>(new CourseEditionDTO(result), HttpStatus.OK);
     }
 
 

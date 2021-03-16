@@ -12,14 +12,19 @@ public abstract class Classroom {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
     private String name;
     private int size;
 
 
+    public Classroom(Integer id, String name, int size) {
+        this.id = id;
+        this.name = name;
+        this.size = size;
+    }
 
     public Classroom(){}
-    public Classroom(long id){
+    public Classroom(Integer id){
         this.id = id;
     }
     public abstract boolean hasComputer();
@@ -27,7 +32,7 @@ public abstract class Classroom {
     public long getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getName() {

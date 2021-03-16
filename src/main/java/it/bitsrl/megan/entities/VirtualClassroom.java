@@ -36,12 +36,19 @@ public class VirtualClassroom extends Classroom{
     }
 
     public VirtualClassroom(){}
-    public VirtualClassroom(long id){
+    public VirtualClassroom(Integer id){
         super(id);
     }
     @Override
     public boolean hasComputer() {
         return true;
+    }
+
+    public VirtualClassroom(Integer id, String name, int size, String platform, String link, String password) {
+        super(id, name, size);
+        this.platform = platform;
+        this.link = link;
+        this.password = password;
     }
 
     @Override

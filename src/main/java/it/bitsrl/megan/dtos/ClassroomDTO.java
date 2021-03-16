@@ -4,8 +4,10 @@ import it.bitsrl.megan.entities.Classroom;
 import it.bitsrl.megan.entities.Equipment;
 import it.bitsrl.megan.entities.RealClassroom;
 import it.bitsrl.megan.entities.VirtualClassroom;
+import it.bitsrl.megan.services.abstractions.AbstractClassroomService;
 
 public class ClassroomDTO {
+
 
     private long id;
     private String name;

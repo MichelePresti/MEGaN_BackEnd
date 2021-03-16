@@ -10,7 +10,7 @@ public class Module {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
     private String subject;
@@ -29,7 +29,20 @@ public class Module {
     @OneToMany(mappedBy="module")
     private Collection<Session> sessions;
 
-    public int getId() {
+
+    public Module(){}
+    public Module(Integer id, String name, String subject, Person teacher, int durationHours, List<Lesson> lessons, CourseEdition edition, Collection<Session> sessions) {
+        this.id = id;
+        this.name = name;
+        this.subject = subject;
+        this.teacher = teacher;
+        this.durationHours = durationHours;
+        this.lessons = lessons;
+        this.edition = edition;
+        this.sessions = sessions;
+    }
+
+    public Integer getId() {
         return id;
     }
 

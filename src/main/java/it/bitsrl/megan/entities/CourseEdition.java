@@ -12,7 +12,7 @@ public class CourseEdition {
 
    @Id
    @GeneratedValue(strategy=GenerationType.IDENTITY)
-   private long id;
+   private Long id;
 
    private LocalDateTime startDate;
 
@@ -25,7 +25,8 @@ public class CourseEdition {
    @OneToMany(mappedBy="courseEdition")
    private Collection<Enrollment> enrolledStudents;// elenco partecipanti
 
-   @OneToMany(mappedBy="edition")
+   @OneToMany(mappedBy="edition",
+   cascade={CascadeType.ALL})
    private Collection<Module> modules;
 
    @ManyToOne
@@ -47,7 +48,7 @@ public class CourseEdition {
       this.id = id;
    }
 
-   public CourseEdition(long id, LocalDateTime startDate, Classroom classroom, Collection<Application> applicatedStudents, Collection<Enrollment> enrolledStudents, Collection<Module> modules, Employee editionManager, Course course, String city, String courseEditionName, int duration) {
+   public CourseEdition(Long id, LocalDateTime startDate, Classroom classroom, Collection<Application> applicatedStudents, Collection<Enrollment> enrolledStudents, Collection<Module> modules, Employee editionManager, Course course, String city, String courseEditionName, int duration) {
       this.id = id;
       this.startDate = startDate;
       this.classroom = classroom;
@@ -61,7 +62,7 @@ public class CourseEdition {
       this.duration = duration;
    }
 
-   public long getId() {
+   public Long getId() {
       return id;
    }
 

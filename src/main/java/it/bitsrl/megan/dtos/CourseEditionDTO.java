@@ -1,7 +1,11 @@
 package it.bitsrl.megan.dtos;
 
+import it.bitsrl.megan.entities.Application;
+import it.bitsrl.megan.entities.Classroom;
 import it.bitsrl.megan.entities.CourseEdition;
+import it.bitsrl.megan.entities.Enrollment;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.stream.Collectors;
 

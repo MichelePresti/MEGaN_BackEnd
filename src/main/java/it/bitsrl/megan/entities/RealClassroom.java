@@ -12,7 +12,7 @@ public class RealClassroom extends Classroom{
 
 
     public RealClassroom(){}
-    public RealClassroom(long id){
+    public RealClassroom(Integer id){
         super(id);
     }
 
@@ -29,5 +29,9 @@ public class RealClassroom extends Classroom{
     public Equipment getTech(){
         return this.tech;
     }
-    
+
+    public RealClassroom(Integer id, String name, int size, Equipment tech) {
+        super(id, name, size);
+        this.tech = tech;
+    }
 }
